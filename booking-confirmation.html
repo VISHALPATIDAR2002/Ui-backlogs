@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="customer.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="customer.html">Home</a></li>
+            <li><a href="book-ticket.html">Book Ticket</a></li>
+            <li><a href="view-tickets.html">View Tickets</a></li>
+            <li><a href="update-details.html">Update Details</a></li>
+            <li><a href="index.html" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section id="confirmation">
+        <h2>Booking Confirmation</h2>
+        <div id="confirmation-details">
+            <p><strong>Booking ID:</strong> <span id="booking-id"></span></p>
+            <p><strong>User ID:</strong> <span id="user-id"></span></p>
+            <p><strong>Train ID:</strong> <span id="train-id"></span></p>
+            <p><strong>Boarding Station:</strong> <span id="boarding"></span></p>
+            <p><strong>Destination Station:</strong> <span id="destination"></span></p>
+        </div>
+    </section>
+
+    <script>
+        // Fetch stored booking details from session storage
+        document.getElementById("booking-id").textContent = sessionStorage.getItem("bookingID");
+        document.getElementById("user-id").textContent = sessionStorage.getItem("userID");
+        document.getElementById("train-id").textContent = sessionStorage.getItem("trainID");
+        document.getElementById("boarding").textContent = sessionStorage.getItem("boarding");
+        document.getElementById("destination").textContent = sessionStorage.getItem("destination");
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Details</title>
+    <link rel="stylesheet" href="customer.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="customer.html">Home</a></li>
+            <li><a href="book-ticket.html">Book Ticket</a></li>
+            <li><a href="view-tickets.html">View Tickets</a></li>
+            <li><a href="update-details.html" class="active">Update Details</a></li>
+            <li><a href="index.html" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section id="update-details">
+        <h2>Update Your Details</h2>
+        <form id="update-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" >
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" pattern="[0-9]{10}" >
+
+            <label for="address">Address:</label>
+            <textarea id="address"></textarea>
+
+            <label>
+                <input type="checkbox" id="change-password"> Update Password
+            </label>
+
+            <div id="password-section" style="display: none;">
+                <label for="current-password">Current Password:</label>
+                <input type="password" id="current-password">
+
+                <label for="new-password">New Password:</label>
+                <input type="password" id="new-password">
+
+                <label for="confirm-password">Confirm New Password:</label>
+                <input type="password" id="confirm-password">
+            </div>
+
+            <button type="submit">Update Details</button>
+        </form>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const changePasswordCheckbox = document.getElementById("change-password");
+    const passwordSection = document.getElementById("password-section");
+    const updateForm = document.getElementById("update-form");
+
+    // Toggle password fields visibility
+    changePasswordCheckbox.addEventListener("change", function () {
+        passwordSection.style.display = this.checked ? "block" : "none";
+    });
+
+    // Form validation and submission
+    updateForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Get input values
+        const email = document.getElementById("email").value;
+        const mobile = document.getElementById("mobile").value;
+        const address = document.getElementById("address").value;
+        const currentPassword = document.getElementById("current-password").value;
+        const newPassword = document.getElementById("new-password").value;
+        const confirmPassword = document.getElementById("confirm-password").value;
+
+        // Basic validation for password change
+        if(!email || ! mobile || !address){
+                alert("You have to choose any field for updation.")
+                return;
+            }
+        if (changePasswordCheckbox.checked) {
+            
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                alert("Please fill in all password fields.");
+                return;
+            }
+            if (newPassword.length < 6) {
+                alert("New password must be at least 6 characters.");
+                return;
+            }
+            if (newPassword !== confirmPassword) {
+                alert("New password and confirmation do not match.");
+                return;
+            }
+        }
+
+        // Simulated form submission
+        alert("Details updated successfully!");
+
+        // Reset the form after submission
+        updateForm.reset();
+        passwordSection.style.display = "none"; // Hide password section after reset
+    });
+});
+
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input, textarea, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</body>
+</html>

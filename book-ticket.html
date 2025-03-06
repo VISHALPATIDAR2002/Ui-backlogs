@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Ticket</title>
+    <link rel="stylesheet" href="customer.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="customer.html">Home</a></li>
+            <li><a href="book-ticket.html" class="active">Book Ticket</a></li>
+            <li><a href="view-tickets.html">View Tickets</a></li>
+            <li><a href="update-details.html">Update Details</a></li>
+            <li><a href="index.html" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section id="book-ticket">
+        <h2>Book a Ticket</h2>
+        <form id="booking-form">
+            <input type="text" id="user-id" readonly placeholder="User ID">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="mobile" placeholder="Mobile" required>
+            <input type="number" id="age" placeholder="Age" required>
+            <input type="date" id="date" required>
+            <input type="text" id="boarding" placeholder="Boarding Station" required>
+            <input type="text" id="destination" placeholder="Destination Station" required>
+            <select id="ticket-category">
+                <option value="First Class">First Class</option>
+                <option value="A.C Tier 1">A.C Tier 1</option>
+                <option value="A.C Tier 2">A.C Tier 2</option>
+                <option value="A.C Tier 2">A.C Tier 3</option>
+                <option value="A.C Tier 2">Sleeper</option>
+                <option value="Tatkal">Tatkal</option>
+            </select>
+            <select id="train-selection">
+                <option value="" disabled selected>Select Available Train</option>
+                <option value="Train101">Train 101 - Express</option>
+                <option value="Train202">Train 202 - Superfast</option>
+                <option value="Train303">Train 303 - Sleeper</option>
+            </select>
+            <input type="number" id="num-tickets" placeholder="Number of Tickets" required>
+            <button type="submit">Book</button>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById("booking-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const userID = document.getElementById("user-id").value || "12345"; // Auto-populated
+            const trainID = document.getElementById("train-selection").value;
+            const boarding = document.getElementById("boarding").value;
+            const destination = document.getElementById("destination").value;
+            
+            if (!trainID) {
+                alert("Please select a train.");
+                return;
+            }
+            
+            // Store booking details in session storage to pass to the confirmation page
+            sessionStorage.setItem("bookingID", Math.floor(100000 + Math.random() * 900000));
+            sessionStorage.setItem("userID", userID);
+            sessionStorage.setItem("trainID", trainID);
+            sessionStorage.setItem("boarding", boarding);
+            sessionStorage.setItem("destination", destination);
+
+            // Navigate to confirmation page
+            window.location.href = "booking-confirmation.html";
+        });
+
+        // Auto-populate User ID
+        document.getElementById("user-id").value = "ID:625aewf7"; // Simulating a logged-in user
+    </script>
+</body>
+</html>

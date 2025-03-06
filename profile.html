@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="admin.html">Home</a></li>
+            <li><a href="client-info.html">Manage Users</a></li>
+            <li><a href="register-train.html">Register Train</a></li>
+            <li><a href="profile.html" class="active">Profile</a></li>
+            <li><a href="index.html" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Profile Section -->
+    <section id="profile">
+        <h2>Update Profile</h2>
+        <form id="profile-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required>
+
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">Update Profile</button>
+            <button type="button" id="delete-account" class="danger">Delete Account</button>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById('profile-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Profile updated successfully!');
+            this.reset();
+        });
+
+        document.getElementById('delete-account').addEventListener('click', function() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                alert('Account deleted successfully!');
+                window.location.href = 'index.html';
+            }
+        }); 
+
+        document.getElementById('logout').addEventListener('click', function() {
+            alert('Logging out...');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

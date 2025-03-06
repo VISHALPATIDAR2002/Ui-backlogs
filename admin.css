@@ -1,0 +1,173 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
+    color: #fff;
+    text-align: center;
+    padding-top: 60px;
+}
+
+/* Navigation Bar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background: #4ca1af;
+    color: #fff;
+}
+
+/* Sections Styling */
+section {
+    margin: 50px auto;
+    width: 90%;
+    max-width: 1000px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Headings */
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #f1f1f1;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+/* Aggregate Table Section */
+#aggregate-section {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #4ca1af;
+    color: #fff;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+input, select {
+    background: rgba(255, 255, 255, 0.2);
+    color: #000;
+    outline: none;
+}
+
+input::placeholder {
+    color: #000;
+}
+
+/* Button Styling */
+button {
+    background: #4ca1af;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #2c3e50;
+}
+
+/* Logout Button */
+#logout {
+    background: red;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+#logout:hover {
+    background: darkred;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}

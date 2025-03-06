@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="admin.html">Home</a></li>
+            <li><a href="client-info.html" class="active">Manage Users</a></li>
+            <li><a href="register-train.html">Register</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="index.html" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Client Information Table Section -->
+    <section id="table-section">
+        <h2>Client Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Tickets Booked</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="client-table">
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>9876543210</td>
+                    <td>3</td>
+                    <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jane Smith</td>
+                    <td>9123456780</td>
+                    <td>5</td>
+                    <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Amit Kumar</td>
+                    <td>9988776655</td>
+                    <td>2</td>
+                    <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Riya Patel</td>
+                    <td>7896541230</td>
+                    <td>4</td>
+                    <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Michael Johnson</td>
+                    <td>8765432109</td>
+                    <td>6</td>
+                    <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        function deleteRow(button) {
+            const row = button.closest("tr");
+            row.remove();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Train</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="admin.html">Home</a></li>
+            <li><a href="client-info.html">Manage Users</a></li>
+            <li><a href="register-train.html" class="active">Register Train</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="index.html" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Register Train Section -->
+    <section id="register-train">
+        <h2>Register a Train</h2>
+        <form id="train-form">
+            <label for="train-name">Train Name:</label>
+            <input type="text" id="train-name" name="train-name" required>
+
+            <label for="seats">Number of Seats:</label>
+            <input type="number" id="seats" name="seats" required>
+
+            <label for="from">From:</label>
+            <input type="text" id="from" name="from" required>
+
+            <label for="to">To:</label>
+            <input type="text" id="to" name="to" required>
+
+            <label for="ownership">Ownership:</label>
+            <select id="ownership" name="ownership" required>
+                <option value="Government">Government</option>
+                <option value="Private">Private</option>
+            </select>
+
+            <button type="submit">Register Train</button>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById('train-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Train registered successfully!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
