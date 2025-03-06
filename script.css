@@ -1,0 +1,187 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("login-form");
+    const signupForm = document.getElementById("signup-form");
+    const adminLoginForm = document.getElementById("admin-login-form");
+    const formTitle = document.getElementById("form-title");
+
+    const signupLink = document.getElementById("signup-link");
+    const loginLink = document.getElementById("login-link");
+    const adminLoginLink = document.getElementById("admin-login-link");
+    const userLoginLink = document.getElementById("user-login-link");
+
+    function showForm(formToShow) {
+        loginForm.classList.add("hidden");
+        signupForm.classList.add("hidden");
+        adminLoginForm.classList.add("hidden");
+
+        formToShow.classList.remove("hidden");
+
+        // Reset form fields when switching
+        loginForm.reset();
+        signupForm.reset();
+        adminLoginForm.reset();
+    }
+
+    // Switch to Signup Form
+    signupLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        showForm(signupForm);
+        formTitle.textContent = "Sign Up";
+    });
+
+    // Switch to User Login Form
+    loginLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        showForm(loginForm);
+        formTitle.textContent = "Login";
+    });
+
+    // Switch to Admin Login Form
+    adminLoginLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        showForm(adminLoginForm);
+        formTitle.textContent = "Admin Login";
+    });
+
+    // Switch from Admin Login to User Login
+    userLoginLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        showForm(loginForm);
+        formTitle.textContent = "Login";
+    });
+
+    // Toggle password visibility
+    function togglePasswordVisibility(toggleButton, passwordField) {
+        toggleButton.addEventListener("click", function () {
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        });
+    }
+
+    document.querySelectorAll(".password-container").forEach(container => {
+        const passwordField = container.querySelector("input[type='password']");
+        const toggleButton = container.querySelector(".toggle-password");
+        if (passwordField && toggleButton) {
+            togglePasswordVisibility(toggleButton, passwordField);
+        }
+    });
+
+    // Validation Functions
+    function isValidUsername(username) {
+        const usernameRegex = /^[A-Za-z]{6,}$/;
+        return usernameRegex.test(username);
+    }
+
+    function isValidPassword(password) {
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=]).{8,}$/;
+        return passwordRegex.test(password);
+    }
+
+    function isValidEmail(email) {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@(?:gmail\.com|yahoo\.com|outlook\.com|hotmail\.com)$/;
+        return emailRegex.test(email);
+    }
+
+    function isValidMobile(mobile) {
+        const mobileRegex = /^[0-9]{10}$/;
+        return mobileRegex.test(mobile);
+    }
+
+    function isValidAadhar(aadhar) {
+        const aadharRegex = /^[0-9]{12}$/;
+        return aadharRegex.test(aadhar);
+    }
+
+    function validateSignup(event) {
+        event.preventDefault();
+
+        const username = document.querySelector("#signup-form input[placeholder='Username']").value.trim();
+        const email = document.querySelector("#signup-form input[placeholder='Email']").value.trim();
+        const password = document.querySelector("#signup-form input[placeholder='Password']").value.trim();
+        const confirmPassword = document.querySelector("#signup-form input[placeholder='Confirm Password']").value.trim();
+        const mobile = document.getElementById("mobile-number").value.trim();
+        const aadhar = document.getElementById("aadhar-number").value.trim();
+
+        let errors = [];
+
+        if (!isValidUsername(username)) {
+            errors.push("Username must be at least 6 characters long and contain only letters.");
+        }
+
+        if (!isValidEmail(email)) {
+            errors.push("Email must be a valid address (e.g., example@gmail.com, example@yahoo.com).");
+        }
+
+        if (!isValidPassword(password)) {
+            errors.push("Password must be at least 8 characters long, contain one uppercase letter, one number, and one special character.");
+        }
+
+        if (password !== confirmPassword) {
+            errors.push("Confirm Password must match the Password.");
+        }
+
+        if (!isValidMobile(mobile)) {
+            errors.push("Mobile number must be exactly 10 digits.");
+        }
+
+        if (!isValidAadhar(aadhar)) {
+            errors.push("Aadhar number must be exactly 12 digits.");
+        }
+
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+        } else {
+            alert("Signup successful!");
+            signupForm.reset();
+        }
+    }
+
+    function validateLogin(event) {
+        event.preventDefault();
+    
+        const username = document.querySelector("#login-form input[placeholder='Username']").value.trim();
+        const password = document.querySelector("#login-form input[placeholder='Password']").value.trim();
+    
+        let errors = [];
+
+        if (username === "admin" && password === "Admin@123") {
+            window.location.href = "admin.html";
+            return;
+        }
+    
+        if (!isValidUsername(username)) {
+            errors.push("Username must be at least 6 characters long and contain only letters.");
+        }
+    
+        if (!isValidPassword(password)) {
+            errors.push("Enter a valid password.");
+        }
+    
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+        } else {
+            window.location.href = "customer.html";
+            loginForm.reset();
+        }
+    }
+
+    function validateAdminLogin(event) {
+        event.preventDefault();
+
+        const adminUsername = document.querySelector("#admin-login-form input[placeholder='Admin Username']").value.trim();
+        const adminPassword = document.querySelector("#admin-login-form input[placeholder='Admin Password']").value.trim();
+
+        if (adminUsername === "admin" && adminPassword === "Admin@123") {
+            window.location.href = "admin.html";
+        } else {
+            alert("Invalid admin credentials.");
+        }
+    }
+
+    signupForm.addEventListener("submit", validateSignup);
+    loginForm.addEventListener("submit", validateLogin);
+    adminLoginForm.addEventListener("submit", validateAdminLogin);
+});
